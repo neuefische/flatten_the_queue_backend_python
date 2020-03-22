@@ -21,9 +21,13 @@ nodeenv -p``
 run.py will use the "populartimes"-Library to scrape the google-API Google Places Web Service to find
 nearby grocery and supermarket stores. 
 
-*Input is given in a **user_data.json** file containing:*
+*Input is given in a **user_data.json** file and a **api_key.json** file 
+**user_data.json** file contains:*
     `{"lat": value,
     "lng": value}`
+    
+**api_key.json** file contains:*
+    `{"api_key": value}`
 
 *Output will be a json file named **output.json**, containing:*
     `{"name": value,
@@ -52,6 +56,36 @@ You can run the code in run.py using this little line of code in node.js:
 If everything works out fine, this should be your line of code:
 ``py    = spawn('/Users/username/myenv/bin/activate', ['run.py'],)``
 
+# TODO:
+
+## Test for valid input and output in run.py script
+
+These tests should be run, to reduce errors. The biggest problem hereby, whould be
+that no output.json is created at all.
+
+1. test input
+input user_data.json:
+```Python
+[{'lat': value,
+'lng': value }]
+```
+- must contain a dict
+- dict must have 'keys'=='lat','lng'
+- values for those keys== floats
+
+1. test output
+output data should be in output.json must contain code like this:
+```Python
+[{"name": value,
+    "id":value,
+    "street": value,
+    "city": value,
+    "current_popularity": value
+    }]
+```
+- output.json must exist even if error in python-script
+- output.json should contain all keys: 'name', 'id', 'street', 'city', 'current_popularity'
+- if values for keys don't exist (as no supermarkets are nearby): value=='Error. No Supermarket found nearby'
 
 # Appendix / All useful infos to Populartimes library
 
@@ -221,5 +255,5 @@ Retrieves information for a given area according to place types and bounds. Adds
     + The *populartimes* data for each day is an array of length 24, with populartimes data starting from hour 0 to 23, the *wait* data is formatted similarly,
     + *popularity*, *current_popularity*, *rating*, *rating_n*, *time_wait*, *time_spent* and *phone* are optional return parameters and only present if available.
   
- ## Example how the data can be used for visualization  
- ![Bars-Gif](/content/bars_visualization.gif "Bars Munich,Berlin,Barcelona, London")
+ ## Example how the data can be used for visualization  not existent anymore git too large
+ ///![Bars-Gif](/content/bars_visualization.gif "Bars Munich,Berlin,Barcelona, London")
