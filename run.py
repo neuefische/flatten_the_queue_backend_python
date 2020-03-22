@@ -48,16 +48,29 @@ def main(argv):
     # default
     all_places = False
     results = populartimes.get(api_key, types, bound_lower, bound_upper, n_threads,  radius, all_places)
+  
     # create DataFrame to split Address in street and city
     df = pd.DataFrame(results)
     df.to_csv(r'df1.csv', index=False)
     # if ['current_popularity'] not in df.columns():
     if 'current_popularity' not in df.index:
         df['current_popularity'] = 1000
+    
     df = df.fillna(1000)
-    df['street'] = df['address'].str.split(', ', n=1, expand=True)[0]
-    df['city'] = df['address'].str.split(', ', n=1, expand=True)[1]
-    df['time_spent'] = df.time_spent.map(lambda x: x[0])
+
+    if 'address' in df.columns:
+        df['street'] = df['address'].str.split(', ', n=1, expand=True)[0]
+        df['city'] = df['address'].str.split(', ', n=1, expand=True)[1]
+    else:
+        print(r'[]')
+        exit(2)
+
+    if 'time_spent' in df.columns:
+        df['time_spent'] = df.time_spent.map(lambda x: x[0])
+    else:
+        print(r'[]')
+        exit(2)
+    
     # extract important info
     columns = ['name', 'id', 'street', 'city', 'current_popularity','time_spent']
     df = df[columns]
@@ -67,11 +80,6 @@ def main(argv):
     df.to_csv(r'df2.csv', index=False)
     print(str(res_json))
     sys.stdout.flush()
-
-    #except:
-    #print(r'[]')
-    #sys.stdout.flush()
-    #sys.exit(2)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
