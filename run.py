@@ -32,10 +32,6 @@ def main(argv):
     radius = float(argv[2])
 
     #try:
-    #read json file with lat and lng input, till now no radius, radius is set by default to 1 km
-    json1_file = open("user_data.json")
-    json1_str = json1_file.read()
-    json1_data = json.loads(json1_str)
     # Larissas api_key, feel free to change
     json2_file = open("api_key.json")
     json2_str = json2_file.read()
