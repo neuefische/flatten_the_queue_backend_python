@@ -72,9 +72,10 @@ def main(argv):
         df = df.fillna(1000)
         df['street'] = df['address'].str.split(', ', n=1, expand=True)[0]
         df['city'] = df['address'].str.split(', ', n=1, expand=True)[1]
+        df['time_spent'] = df.time_spent.map(lambda x: x[0])
 
         # extract important info
-        columns = ['name', 'id', 'street', 'city', 'current_popularity']
+        columns = ['name', 'id', 'street', 'city', 'current_popularity','time_spent']
         df = df[columns]
 
         # convert to json
