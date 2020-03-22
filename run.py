@@ -9,25 +9,28 @@ latitude = 0.0
 radius = 1000
 
 def main(argv):
-    try:
-       opts, args = getopt.getopt(argv,"hl:b:r:",["longitute=","latitude=","radius="])
-    except getopt.GetoptError:
-       print ('run.py -i <longitude> -o <outputfile>')
-       sys.exit(2)
-    for opt, arg in opts:
-       if opt == '-h':
-          print ('run.py -l <longitude> -b <latitude> -r <radius>')
-          sys.exit()
-       elif opt in ("-l", "--longitude"):
-          longitude = float(arg)
-       elif opt in ("-b", "--latitude"):
-          latitude = float(arg)
-       elif opt in ("-r", "--radius"):
-          radius = float(arg)
+    #try:
+    #   opts, args = getopt.getopt(argv,"hl:b:r:",["longitute=","latitude=","radius="])
+    #except getopt.GetoptError:
+    #   print ('run.py -i <longitude> -o <outputfile>')
+    #   sys.exit(2)
+    #for opt, arg in opts:
+    #   if opt == '-h':
+    #      print ('run.py -l <longitude> -b <latitude> -r <radius>')
+    #      sys.exit()
+    #   elif opt in ("-l", "--longitude"):
+    #      longitude = float(arg)
+    #   elif opt in ("-b", "--latitude"):
+    #      latitude = float(arg)
+    #   elif opt in ("-r", "--radius"):
+    #      radius = float(arg)
     #print ('longitude file is ', longitude)
     #print ('latitude file is ', latitude)
     #print ('radius file is ', radius)
-    
+    latitude = float(argv[0])
+    longitude = float(argv[1])
+    radius = float(argv[2])
+
     try:
         #read json file with lat and lng input, till now no radius, radius is set by default to 1 km
         json1_file = open("user_data.json")
