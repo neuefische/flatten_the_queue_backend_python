@@ -29,6 +29,7 @@ USER_AGENT = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) "
                             "AppleWebKit/537.36 (KHTML, like Gecko) "
                             "Chrome/54.0.2840.98 Safari/537.36"}
 
+logging.basicConfig(filename='crawler.log',level=logging.INFO)
 
 class PopulartimesException(Exception):
     """Exception raised for errors in the input.
@@ -178,7 +179,7 @@ def get_radar(item):
 
     item["res"] += len(radar)
     if item["res"] >= 60:
-        logging.warning("Result limit in search radius reached, some data may get lost")
+        logging.info("Result limit in search radius reached, some data may get lost")
 
     bounds = params["bounds"]
 

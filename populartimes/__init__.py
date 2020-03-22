@@ -4,8 +4,7 @@
 from .crawler import run
 from .crawler import get_populartimes
 
-import logging
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+#logging.getLogger(__name__).addHandler(logging.NullHandler())
 
 """
 
